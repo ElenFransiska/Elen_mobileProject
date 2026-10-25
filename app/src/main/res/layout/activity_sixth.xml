@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4FAFC"
+    tools:context=".Home.Pertemuan6.SixthActivity">
+
+    <!-- TOOLBAR RESMI -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#2D7FF9"
+        app:title="Kategori Wisata"
+        app:titleTextColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 3 TOMBOL UNTUK MENGGANTI FRAGMENT -->
+    <LinearLayout
+        android:id="@+id/layoutTombolFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <Button
+            android:id="@+id/btnFragment1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="#2ABF88"
+            android:text="Sejarah"
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/btnFragment2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="4dp"
+            android:backgroundTint="#2ABF88"
+            android:text="Alam"
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/btnFragment3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="#2ABF88"
+            android:text="Religi"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <!-- TEMPAT MUNCULNYA FRAGMENT -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTombolFragment" />
+
+    <!-- BOTTOM NAVIGATION -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnkembali"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Home"
+            android:textColor="#90A4AE"
+            android:textSize="10sp"
+            app:icon="@drawable/ic_home"
+            app:iconGravity="top"
+            app:iconTint="#90A4AE" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnpEnam"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Favorit"
+            android:textColor="#5B67CA"
+            android:textSize="10sp"
+            app:icon="@drawable/ic_favorite"
+            app:iconGravity="top"
+            app:iconTint="#5B67CA" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnprofil"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Profil"
+            android:textColor="#90A4AE"
+            android:textSize="10sp"
+            app:icon="@drawable/ic_person"
+            app:iconGravity="top"
+            app:iconTint="#90A4AE" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnlogout"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Logout"
+            android:textColor="#E53935"
+            android:textSize="10sp"
+            app:icon="@drawable/ic_logout"
+            app:iconGravity="top"
+            app:iconTint="#E53935" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

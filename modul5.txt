@@ -1,0 +1,764 @@
+PEMROGRAMAN	MOBILE	·	ANDROID	STUDIO	&	KOTLIN
+Pertemuan	5
+Toolbar	·	Option	Menu	·	CoordinatorLayout	(Scroll	Toolbar)	·	WebView
+ISI	MATERI
+1
+Persiapan	Project
+2
+Toolbar	&	Tombol	Back
+3
+Option	Menu
+4
+CoordinatorLayout	&	Scroll	Toolbar
+5
+WebView
+1
+Persiapan	Project
+Buat	package	baru	dengan	nama	
+pertemuan_5
+	(sejajar	dengan	
+LoginActivity
+	dan	
+MainActivity
+),	lalu	buat	dua	Activity	di	dalamnya:
+LimaActivity
+	dan	
+WebViewActivity
+.	Terapkan	
+binding
+	pada	keduanya.
+com.example.irgi_tic
+pertemuan_5
+LimaActivity
+WebViewActivity
+LoginActivity
+MainActivity
+res
+layout
+activity_lima.xml
+activity_web_view.xml
+menu
+main_menu.xml
+drawable
+ic_arrow_back.xml
+CATATAN
+Pastikan	struktur	folder-nya	sama	seperti	di	atas!
+1
+Tombol	menuju	Pertemuan	5
+Pada	
+activity_main.xml
+	tambahkan	tombol	dengan	id	
+btnToLima
+	di	bawah	tombol	
+Kembali
+.
+XML
+<
+Button
+				android: id=
+"@+id/btnToLima"
+				android: layout_width=
+"wrap_content"
+				android: layout_height=
+"wrap_content"
+				android: layout_marginTop=
+"12dp"
+				android: backgroundTint=
+"#C2185B"
+				android: text=
+"Pertemuan	5"
+				app: layout_constraintEnd_toEndOf=
+"parent"
+				app: layout_constraintStart_toStartOf=
+"parent"
+				app: layout_constraintTop_toBottomOf=
+"@+id/btnKembali"
+	/>
+Lalu	di	
+MainActivity
+,	panggil	
+LimaActivity
+	saat	tombol	diklik.
+KOTLIN
+binding.btnToLima.setOnClickListener	{
+				
+val
+	intent	=	Intent(this@MainActivity,	LimaActivity: :
+class
+.java)
+				startActivity(intent)
+}
+2
+Daftarkan	Activity	di	AndroidManifest
+Pastikan	kedua	Activity	baru	terdaftar	di	
+AndroidManifest.xml
+	(otomatis	jika	dibuat	lewat	
+New	→	Activity
+).
+XML
+<
+activity
+				android: name=
+".pertemuan_5.LimaActivity"
+				android: exported=
+"false"
+				android: windowSoftInputMode=
+"adjustResize"
+	/>
+<
+activity
+				android: name=
+".pertemuan_5.WebViewActivity"
+Pemrograman Mobile · Pertemuan 5
+Halaman 1 dari 7
+
+				android: exported=
+"false"
+				android: windowSoftInputMode=
+"adjustResize"
+	/>
+Tombol	
+Pertemuan	5
+	di	MainActivity
+2
+Toolbar	&	Tombol	Back
+Toolbar	adalah	bilah	di	bagian	atas	halaman	yang	menampilkan	
+judul
+,	
+subjudul
+,	
+tombol	back
+	dan	
+menu
+.	Pada	tema	
+NoActionBar
+	(yang	dipakai
+proyek	kita),	Toolbar	harus	kita	pasang	sendiri	di	layout.
+1
+Siapkan	ikon	tombol	back
+Buat	
+Vector	Asset
+	bernama	
+ic_arrow_back
+	di	
+res/drawable
+	(klik	kanan	
+drawable
+	→	New	→	Vector	Asset	→	pilih	ikon	
+arrow	back
+).	Warna
+ikon	dibuat	putih	agar	terlihat	pada	Toolbar	berwarna.
+XML
+<
+vector
+	xmlns: android=
+"http: //schemas.android.com/apk/res/android"
+				android: width=
+"24dp"
+				android: height=
+"24dp"
+				android: autoMirrored=
+"true"
+				android: tint=
+"#FFFFFF"
+				android: viewportWidth=
+"960"
+				android: viewportHeight=
+"960"
+>
+				<
+path
+								android: fillColor=
+"@android: color/white"
+								android: pathData=
+"M640,880L240,480L640,80L711,151L382,480L711,809L640,880Z"
+	/>
+</
+vector
+>
+2
+Pasang	Toolbar	di	layout
+Pada	
+activity_lima.xml
+,	tambahkan	komponen	
+Toolbar
+	dan	beri	id	
+toolbar
+.	Warna	latar	diatur	dengan	
+background
+,	sedangkan	warna
+teks	judul	dan	subjudul	dengan	
+titleTextColor
+	dan	
+subtitleTextColor
+.
+XML
+<
+androidx.appcompat.widget.Toolbar
+				android: id=
+"@+id/toolbar"
+				android: layout_width=
+"match_parent"
+				android: layout_height=
+"?attr/actionBarSize"
+				android: background=
+"#0097A7"
+				app: subtitleTextColor=
+"@android: color/white"
+				app: titleTextColor=
+"@android: color/white"
+	/>
+3
+Aktifkan	Toolbar	di	Activity
+Toolbar	harus	didaftarkan	sebagai	
+ActionBar
+	menggunakan	
+setSupportActionBar()
+.	Setelah	itu	judul,	subjudul	dan	tombol	back	dapat	diatur
+lewat	
+supportActionBar
+.
+KOTLIN
+class
+	LimaActivity	: 	AppCompatActivity()	{
+				
+private
+	
+lateinit
+	
+var
+	binding: 	ActivityLimaBinding
+				
+override
+	
+fun
+	onCreate(savedInstanceState: 	Bundle?)	{
+								...
+								setSupportActionBar(binding.toolbar)
+								supportActionBar?.apply	{
+												title	=	
+"Halaman	Pertemuan	5"
+												subtitle	=	
+"Ini	adalah	subtitle"
+												setDisplayHomeAsUpEnabled(
+true
+)
+												setDisplayShowHomeEnabled(
+true
+)
+												setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+								}
+				}
+}
+Pemrograman Mobile · Pertemuan 5
+Halaman 2 dari 7
+
+Atribut	/	Fungsi
+Keterangan
+title
+Judul	yang	tampil	di	Toolbar
+subtitle
+Teks	kecil	di	bawah	judul
+setDisplayHomeAsUpEnabled(true)
+Menampilkan	tombol	“back”	di	kiri	Toolbar
+setHomeAsUpIndicator(...)
+Mengganti	ikon	tombol	back	dengan	drawable	sendiri
+4
+Aksi	tombol	back
+Tombol	back	pada	Toolbar	akan	mengirim	item	dengan	id	
+android.R.id.home
+	ke	
+onOptionsItemSelected()
+.	Tanpa	kode	berikut,	tombol
+back	akan	tampil	tetapi	tidak	melakukan	apa-apa.
+KOTLIN
+override
+	
+fun
+	onOptionsItemSelected(item: 	MenuItem): 	Boolean	{
+				
+return
+	
+when
+	(item.itemId)	{
+								android.R.id.home	->	{
+												onBackPressedDispatcher.onBackPressed()
+												
+true
+								}
+								
+else
+	->	super.onOptionsItemSelected(item)
+				}
+}
+Toolbar	dengan	judul,	subjudul	dan
+tombol	back
+CATATAN
+Jalankan	aplikasi,	buka	halaman	Pertemuan	5,	lalu	klik	tombol	back	di	Toolbar.	Halaman	akan	kembali	ke	
+MainActivity
+.
+3
+Option	Menu
+Option	Menu	adalah	menu	aksi	yang	tampil	di	sisi	kanan	Toolbar.	Item	yang	cukup	ruang	tampil	sebagai	ikon,	sisanya	masuk	ke	menu	titik	tiga
+(
+⋮
+)
+.
+1
+Buat	resource	menu
+Klik	kanan	folder	
+res
+	→	New	→	Android	Resource	File,	pilih	Resource	type	
+Menu
+,	dan	beri	nama	
+main_menu
+.
+main_menu.xml
+XML
+<?xml	version=
+"1.0"
+	encoding=
+"utf-8"
+?>
+<
+menu
+	xmlns: android=
+"http: //schemas.android.com/apk/res/android"
+				xmlns: app=
+"http: //schemas.android.com/apk/res-auto"
+>
+				<
+item
+								android: id=
+"@+id/action_search"
+								android: title=
+"Search"
+								android: icon=
+"@android: drawable/ic_menu_search"
+								app: showAsAction=
+"ifRoom"
+	/>
+				<
+item
+								android: id=
+"@+id/action_settings"
+								android: title=
+"Settings"
+								android: icon=
+"@android: drawable/ic_menu_preferences"
+								app: showAsAction=
+"never"
+	/>
+</
+menu
+>
+Pemrograman Mobile · Pertemuan 5
+Halaman 3 dari 7
+
+Nilai	showAsAction
+Perilaku
+ifRoom
+Tampil	sebagai	ikon	di	Toolbar	jika	ruang	cukup
+never
+Selalu	masuk	ke	menu	titik	tiga	(
+⋮
+)
+always
+Selalu	tampil	di	Toolbar
+2
+Tampilkan	menu	di	Toolbar
+Gunakan	
+onCreateOptionsMenu()
+	untuk	memasang	file	menu	ke	Toolbar.
+KOTLIN
+override
+	
+fun
+	onCreateOptionsMenu(menu: 	Menu): 	Boolean	{
+				menuInflater.inflate(R.menu.main_menu,	menu)
+				
+return
+	
+true
+}
+3
+Aksi	saat	item	menu	diklik
+Tambahkan	id	masing-masing	item	pada	
+onOptionsItemSelected()
+	yang	sudah	dibuat	sebelumnya.
+KOTLIN
+override
+	
+fun
+	onOptionsItemSelected(item: 	MenuItem): 	Boolean	{
+				
+return
+	
+when
+	(item.itemId)	{
+								android.R.id.home	->	{
+												onBackPressedDispatcher.onBackPressed()
+												
+true
+								}
+								R.id.action_search	->	{
+												Toast.makeText(this,	
+"Search	Clicked"
+,	Toast.LENGTH_SHORT).show()
+												
+true
+								}
+								R.id.action_settings	->	{
+												Toast.makeText(this,	
+"Settings	Clicked"
+,	Toast.LENGTH_SHORT).show()
+												
+true
+								}
+								
+else
+	->	super.onOptionsItemSelected(item)
+				}
+}
+Ikon	Search	dan	menu	titik	tiga	(
+⋮
+)
+Menu	titik	tiga:	item	
+Settings
+Klik	Search:	Toast	“Search	Clicked”
+PERHATIAN
+Nilai	
+true
+	berarti	klik	sudah	ditangani.	Jika	menu	tidak	muncul,	pastikan	
+setSupportActionBar(binding.toolbar)
+	sudah
+dipanggil.
+4
+CoordinatorLayout	&	Scroll	Toolbar
+Agar	Toolbar	dapat	
+menghilang	saat	konten	di-scroll
+	ke	bawah	dan	
+muncul	kembali
+	saat	scroll	ke	atas,	gunakan	kombinasi	tiga	komponen
+berikut:
+Komponen
+Fungsi
+CoordinatorLayout
+Layout	induk	yang	mengatur	interaksi	scroll	antar	komponen
+AppBarLayout
+Pembungkus	Toolbar	yang	bisa	bergerak	mengikuti	scroll
+NestedScrollView
+Konten	yang	dapat	di-scroll
+1
+Susunan	activity_lima.xml
+Ubah	layout	induk	menjadi	
+CoordinatorLayout
+,	bungkus	Toolbar	dengan	
+AppBarLayout
+,	lalu	letakkan	konten	di	dalam	
+NestedScrollView
+.
+Pemrograman Mobile · Pertemuan 5
+Halaman 4 dari 7
+
+XML
+<
+androidx.coordinatorlayout.widget.CoordinatorLayout
+	...>
+				<
+com.google.android.material.appbar.AppBarLayout
+								android: id=
+"@+id/appBar"
+								android: layout_width=
+"match_parent"
+								android: layout_height=
+"wrap_content"
+>
+								<
+androidx.appcompat.widget.Toolbar
+												android: id=
+"@+id/toolbar"
+												android: layout_width=
+"match_parent"
+												android: layout_height=
+"?attr/actionBarSize"
+												android: background=
+"#0097A7"
+												app: subtitleTextColor=
+"@android: color/white"
+												app: titleTextColor=
+"@android: color/white"
+												app: layout_scrollFlags=
+"scroll|enterAlways"
+	/>
+				</
+com.google.android.material.appbar.AppBarLayout
+>
+				<
+androidx.core.widget.NestedScrollV iew
+								android: layout_width=
+"match_parent"
+								android: layout_height=
+"match_parent"
+								app: layout_behavior=
+"@string/appbar_scrolling_view_behavior"
+								android: padding=
+"24dp"
+								android: clipToPadding=
+"false"
+>
+								<
+LinearLayout
+												android: layout_width=
+"match_parent"
+												android: layout_height=
+"wrap_content"
+												android: orientation=
+"vertical"
+												android: gravity=
+"center_horizontal"
+>
+												
+<!--	Tambahkan	konten	panjang	supaya	bisa	di-scroll	-->
+												...
+								</
+LinearLayout
+>
+				</
+androidx.core.widget.NestedScrollV iew
+>
+</
+androidx.coordinatorlayout.widget.CoordinatorLayout
+>
+Atribut
+Keterangan
+layout_scrollFlags="scroll|enterAlways"
+Toolbar	ikut	tergulung	saat	scroll	ke	bawah	dan	langsung	muncul	saat	scroll	ke
+atas
+layout_behavior="@string/appbar_scrolling_view_behavior"
+Menghubungkan	konten	dengan	AppBarLayout	agar	posisinya	berada	di	bawah
+Toolbar
+Posisi	awal
+Setelah	di-scroll	ke	bawah:	Toolbar
+tersembunyi
+CATATAN
+Karena	konten	harus	cukup	panjang	untuk	di-scroll,	salin	beberapa	
+TextView
+	berisi	teks	
+Lorem	ipsum
+	ke	dalam	
+LinearLayout
+lalu	jalankan	aplikasi	dan	coba	scroll.
+5
+WebView
+WebView	adalah	komponen	untuk	menampilkan	halaman	web	
+di	dalam	aplikasi
+,	sehingga	pengguna	tidak	perlu	membuka	browser.
+1
+Izin	internet
+Karena	membutuhkan	koneksi,	tambahkan	izin	berikut	di	
+AndroidManifest.xml
+,	
+di	luar
+	tag	
+<application>
+.
+XML
+<
+manifest
+	...>
+				<
+uses
+-permission	android: name=
+"android.permission.INTERNET"
+/>
+Pemrograman Mobile · Pertemuan 5
+Halaman 5 dari 7
+
+				<
+application
+	...>
+								...
+				</
+application
+>
+</
+manifest
+>
+2
+Buat	WebViewActivity
+Buat	Activity	baru	
+WebViewActivity
+	di	package	
+pertemuan_5
+,	terapkan	
+binding
+	dan	daftarkan	di	manifest.	Pada	
+LimaActivity
+,	tambahkan
+tombol	dengan	id	
+btnWebView
+	yang	membuka	halaman	ini.
+KOTLIN
+binding.btnWebView.setOnClickListener	{
+				startActivity(Intent(this,	WebViewActivity: :
+class
+.java))
+}
+3
+Layout	activity_web_view.xml
+Susunan	layout	sama	dengan	sebelumnya:	
+CoordinatorLayout
+	→	
+AppBarLayout
+	+	
+Toolbar
+,	kemudian	
+WebView
+	sebagai	konten	dengan
+layout_behavior
+.
+XML
+<
+androidx.coordinatorlayout.widget.CoordinatorLayout
+	...>
+				<
+com.google.android.material.appbar.AppBarLayout
+	...>
+								<
+androidx.appcompat.widget.Toolbar
+												android: id=
+"@+id/toolbar"
+												app: layout_scrollFlags=
+"scroll|enterAlways"
+	...	/>
+				</
+com.google.android.material.appbar.AppBarLayout
+>
+				<
+WebV iew
+								android: id=
+"@+id/webView"
+								android: layout_width=
+"match_parent"
+								android: layout_height=
+"match_parent"
+								app: layout_behavior=
+"@string/appbar_scrolling_view_behavior"
+/>
+</
+androidx.coordinatorlayout.widget.CoordinatorLayout
+>
+4
+Muat	halaman	web
+Atur	
+WebViewClient
+	agar	link	dibuka	di	dalam	WebView	(bukan	di	browser),	aktifkan	JavaScript,	lalu	panggil	
+loadUrl()
+.
+KOTLIN
+binding.webView.webViewClient	=	WebViewClient()
+binding.webView.settings.javaScriptEnabled	=	
+true
+binding.webView.loadUrl(
+"https: //pcr.ac.id"
+)
+setSupportActionBar(binding.toolbar)
+supportActionBar?.apply	{
+				title	=	
+"Web	Merdeka"
+				setDisplayHomeAsUpEnabled(
+true
+)
+				setDisplayShowHomeEnabled(
+true
+)
+				setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+}
+5
+Toolbar	hide	/	show	saat	scroll	web
+Karena	
+WebView
+	bukan	
+NestedScrollView
+,	perilaku	sembunyi/tampil	Toolbar	perlu	kita	atur	manual	dengan	
+setOnScrollChangeListener
+dan	
+setExpanded()
+	milik	AppBarLayout.
+KOTLIN
+//	Agar	Toolbar	hide/show	saat	scroll	web
+binding.webView.setOnScrollChangeListener	{	_,	_,	scrollY,	_,	oldScrollY	->
+				
+if
+	(scrollY	>	oldScrollY)	{
+								binding.appBar.setExpanded(
+false
+,	
+true
+)	
+//	sembunyikan
+				}	
+else
+	
+if
+	(scrollY	<	oldScrollY)	{
+								binding.appBar.setExpanded(
+true
+,	
+true
+)	
+//	tampilkan
+				}
+}
+KOTLIN
+override
+	
+fun
+	onOptionsItemSelected(item: 	MenuItem): 	Boolean	{
+				
+return
+	
+when
+	(item.itemId)	{
+								android.R.id.home	->	{
+												onBackPressedDispatcher.onBackPressed()
+												
+true
+								}
+								
+else
+	->	super.onOptionsItemSelected(item)
+				}
+}
+Pemrograman Mobile · Pertemuan 5
+Halaman 6 dari 7
+
+WebViewActivity	menampilkan	halaman
+web	(ilustrasi	isi	halaman)
+Scroll	ke	bawah:	Toolbar	tersembunyi
+PERHATIAN
+Pastikan	perangkat/emulator	terhubung	ke	internet.	Jika	halaman	tidak	tampil,	periksa	kembali	izin	
+INTERNET
+	di	manifest.
+Ringkasan
+Topik
+Kata	kunci
+Fungsi
+Toolbar
+setSupportActionBar
+Menjadikan	Toolbar	sebagai	ActionBar
+Tombol	back
+android.R.id.home
+Kembali	ke	halaman	sebelumnya
+Option	Menu
+onCreateOptionsMenu
+Memasang	menu	ke	Toolbar
+Scroll	Toolbar
+CoordinatorLayout
+Toolbar	hide/show	saat	scroll
+WebView
+loadUrl
+Menampilkan	halaman	web	di	dalam	aplikasi
+Pemrograman Mobile · Pertemuan 5
+Halaman 7 dari 7

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">elenfransiska_3tib</string>
+    <string name="deskripsi">Welcome to our library of original guides to the world of typography, which the Google Fonts team is producing in collaboration with typographic experts from around the world. Google Fonts Knowledge enables designers and developers of all skill sets to choose and use type with purpose.
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
