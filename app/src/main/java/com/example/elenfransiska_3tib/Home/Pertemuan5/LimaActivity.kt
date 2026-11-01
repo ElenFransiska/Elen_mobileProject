@@ -22,7 +22,6 @@ class LimaActivity : AppCompatActivity() {
         binding = ActivityLimaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Menggunakan binding.root lebih aman agar tidak error
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -31,16 +30,20 @@ class LimaActivity : AppCompatActivity() {
 
         binding.btnwebview.setOnClickListener {
             val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", "https://www.tripadvisor.co.id/Attractions-g3253675-Activities-c57-Riau_Province_Sumatra.html")
             startActivity(intent)
         }
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
             title = "Halaman Pertemuan 5"
-            subtitle = "Ini adalah subtitle"
+            subtitle = "Pariwisata Riau & WebView"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        }
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
         }
     }
 

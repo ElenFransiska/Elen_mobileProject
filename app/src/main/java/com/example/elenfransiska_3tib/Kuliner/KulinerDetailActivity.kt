@@ -6,8 +6,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.bumptech.glide.Glide
-import com.example.elenfransiska_3tib.R
 import com.example.elenfransiska_3tib.databinding.ActivityKulinerDetailBinding
 
 class KulinerDetailActivity : AppCompatActivity() {
@@ -21,7 +19,7 @@ class KulinerDetailActivity : AppCompatActivity() {
         binding = ActivityKulinerDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -31,6 +29,9 @@ class KulinerDetailActivity : AppCompatActivity() {
         supportActionBar?.apply {
             title = "Detail Kuliner"
             setDisplayHomeAsUpEnabled(true)
+        }
+        binding.toolbarKuliner.setNavigationOnClickListener {
+            finish()
         }
 
         val name = intent.getStringExtra("NAME") ?: "Tidak diketahui"

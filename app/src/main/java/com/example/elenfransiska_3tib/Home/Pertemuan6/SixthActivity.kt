@@ -21,7 +21,7 @@ class SixthActivity : AppCompatActivity() {
         binding = ActivitySixthBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Memunculkan tombol panah back
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.toolbar.setNavigationOnClickListener {
             finish()
@@ -40,14 +40,15 @@ class SixthActivity : AppCompatActivity() {
         }
 
         binding.btnFragment2.setOnClickListener {
-            Toast.makeText(this, "Menampilkan Wisata Alam", Toast.LENGTH_SHORT).show()
+            gantiFragment(DuaFragment())
         }
 
         binding.btnFragment3.setOnClickListener {
-            Toast.makeText(this, "Menampilkan Wisata Religi", Toast.LENGTH_SHORT).show()
+            gantiFragment(TigaFragment())
         }
+
         binding.btnkembali.setOnClickListener {
-            finish() // Kembali ke Home
+            finish()
         }
 
         binding.btnpEnam.setOnClickListener {
@@ -62,6 +63,7 @@ class SixthActivity : AppCompatActivity() {
             Toast.makeText(this, "Silakan kembali ke Home untuk Logout", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun gantiFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

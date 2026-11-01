@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.elenfransiska_3tib.DetailActivity
 import com.example.elenfransiska_3tib.Home.Pertemuan5.WebViewActivity
+import com.example.elenfransiska_3tib.Kuliner.tutorial.TutorialMessageActivity
 import com.example.elenfransiska_3tib.LoginActivity
 import com.example.elenfransiska_3tib.databinding.FragmentMoreBinding
 
@@ -24,6 +25,7 @@ class MoreFragment : Fragment() {
 
     // Menu Lainnya
     private val moreMenuList = listOf(
+        mapOf("title" to "Tutorial Screen (DotsIndicator)", "desc" to "Tahap 5 & 6: Onboarding ViewPager2 dan DotsIndicator"),
         mapOf("title" to "Destinasi Favorit", "desc" to "Lihat daftar tempat wisata favorit Anda"),
         mapOf("title" to "Website Pariwisata", "desc" to "Jelajahi Riau lebih jauh via Web"),
         mapOf("title" to "Pengaturan Akun", "desc" to "Kelola profil dan preferensi"),
@@ -57,6 +59,10 @@ class MoreFragment : Fragment() {
         binding.listViewItems.setOnItemClickListener { _, _, position, _ ->
             when (position) {
                 0 -> {
+                    // Tutorial Screen (DotsIndicator)
+                    startActivity(Intent(requireContext(), TutorialMessageActivity::class.java))
+                }
+                1 -> {
                     // Favorit -> Buka DetailActivity sebagai contoh Destinasi Favorit
                     val intent = Intent(requireContext(), DetailActivity::class.java)
                     intent.putExtra("JUDUL", "Istana Siak Sri Indrapura (Favorit)")
@@ -66,16 +72,16 @@ class MoreFragment : Fragment() {
                     intent.putExtra("DESKRIPSI", "Istana Asserayah Hasyimiah atau Istana Siak adalah kediaman resmi Sultan Siak yang mulai dibangun pada tahun 1889.\n\nDi dalamnya terdapat berbagai koleksi peninggalan kerajaan, termasuk Komet (alat pemutar musik piringan hitam langka yang konon hanya ada dua di dunia).")
                     startActivity(intent)
                 }
-                1 -> {
+                2 -> {
                     // Website -> Buka WebViewActivity
                     val intent = Intent(requireContext(), WebViewActivity::class.java)
                     intent.putExtra("URL", "https://www.tripadvisor.co.id/Attractions-g3253675-Activities-c57-Riau_Province_Sumatra.html")
                     startActivity(intent)
                 }
-                2 -> {
+                3 -> {
                     Toast.makeText(requireContext(), "Halaman Pengaturan belum tersedia", Toast.LENGTH_SHORT).show()
                 }
-                3 -> {
+                4 -> {
                     val sharedPref = requireContext().getSharedPreferences("user_pref", Context.MODE_PRIVATE)
                     AlertDialog.Builder(requireContext())
                         .setTitle("Logout")

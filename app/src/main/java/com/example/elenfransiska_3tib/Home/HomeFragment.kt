@@ -3,7 +3,6 @@ package com.example.elenfransiska_3tib.Home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -15,6 +14,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.elenfransiska_3tib.DetailActivity
+import com.example.elenfransiska_3tib.Home.Pertemuan5.LimaActivity
+import com.example.elenfransiska_3tib.Home.Pertemuan6.SixthActivity
+import com.example.elenfransiska_3tib.Home.pertemuan_9.NinthActivity
+import com.example.elenfransiska_3tib.Kuliner.tutorial.TutorialMessageActivity
 import com.example.elenfransiska_3tib.LoginActivity
 import com.example.elenfransiska_3tib.R
 import com.example.elenfransiska_3tib.databinding.FragmentHomeBinding
@@ -34,8 +37,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        // Aktifkan menu di fragment
+
         setHasOptionsMenu(true)
 
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbarMain)
@@ -48,6 +50,22 @@ class HomeFragment : Fragment() {
         }
 
         binding.txtusername.text = "Hi, $user"
+
+        binding.btnToNinth.setOnClickListener {
+            startActivity(Intent(requireContext(), NinthActivity::class.java))
+        }
+
+        binding.btnToLima.setOnClickListener {
+            startActivity(Intent(requireContext(), LimaActivity::class.java))
+        }
+
+        binding.btnToSix.setOnClickListener {
+            startActivity(Intent(requireContext(), SixthActivity::class.java))
+        }
+
+        binding.btnToTutorial.setOnClickListener {
+            startActivity(Intent(requireContext(), TutorialMessageActivity::class.java))
+        }
 
         binding.btnDetailSiak.setOnClickListener {
             val intent = Intent(requireContext(), DetailActivity::class.java)

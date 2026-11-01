@@ -13,7 +13,7 @@
         android:id="@+id/toolbarKuliner"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="#0097A7"
+        android:background="#2D7FF9"
         app:titleTextColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
